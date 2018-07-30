@@ -1,0 +1,70 @@
+button.accordion {
+    font-family: myBKFont;
+    font-size:12pt;
+    background-color: #eee;
+    color: #444;
+    padding: 18px;
+    width: 100%;
+    text-align: right;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    position: relative;
+    padding: 0 18px;
+    background-color: white;
+    display: block;
+    transition: 0.1s;
+    border-bottom:transparent solid 1px;
+}
+div.panel p {
+    margin-left: 50px;
+    display:inline
+}
+div.panel .editable {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /*width: 50px;
+    height: 40px;*/
+    direction: rtl;
+    text-align: right;
+    transition: all .4s;
+    cursor: pointer;
+    padding:5px;
+    border-radius: 5px;
+}
+div.panel .editable .icon{
+    margin:0px 1px;
+    transition:all 400ms;
+}
+div.panel .editable .icon:hover .okie{
+    color:limegreen;
+}
+div.panel .editable .icon:hover .nokie {
+    color: red;
+}
+div.panel .editable .icon:hover .editIcon {
+    color: mediumpurple;
+}
+div.panel .editable .icon:hover {
+    color: #c4977a;
+}
+.questionMark{
+    color:red;
+}
+.answerMark {
+    color: dodgerblue;
+}
+.solutionText{
+    color: #272a29;
+    font-family: myBKFont;
+}
