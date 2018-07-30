@@ -43,19 +43,9 @@ public class searchService {
         index = new RAMDirectory();
         w = new IndexWriter(index, config);
         FAQDao faqDao=new FAQDao();
-        /*Map<String, Integer> indexList = faqDao.getIndexes(criteria);*/
         Map<Integer, String> indexList = faqDao.getIndexes(criteria);
         for (Map.Entry<Integer, String> i : indexList.entrySet()) {
             addDoc(w, i.getValue());
-            /*if (i.getSolutionFields() != null && i.getSolutionFields().size() > 0) {
-                for (SolutionModel sModel :
-                        i.getSolutionFields()) {
-                    String textField = sModel.getTextField();
-                    UUID SID=sModel.getSID();
-                    addDoc(w, i.getSubjectField(), i.getCodeField().toString(),i.getScore(), textField,SID);
-                }
-            } else
-                addDoc(w, i.getSubjectField(), i.getCodeField().toString(),i.getScore(), null,null);*/
         }
         w.close();
     }
@@ -63,12 +53,6 @@ public class searchService {
     public static void addDoc(IndexWriter w, String keyword) {
         Document doc = new Document();
         doc.add(new TextField("index", keyword, Field.Store.YES));
-        /*doc.add(new TextField("subjectID", subjectID, Field.Store.YES));
-        doc.add(new TextField("score", String.valueOf(score), Field.Store.YES));
-        if (solution != null && !solution.equals("null"))
-            doc.add(new TextField("solution", solution, Field.Store.YES));
-        if (solutionID != null && !solutionID.equals("null"))
-            doc.add(new TextField("solutionID", String.valueOf(solutionID), Field.Store.YES));*/
         try {
             w.addDocument(doc);
         } catch (IOException e) {

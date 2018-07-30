@@ -35,6 +35,7 @@ public class FAQDao {
 
     public List<FAQModel> getAnswers(String ids) {
         List<FAQModel> indexList = new ArrayList<>();
+        if (ids.equalsIgnoreCase("")) return indexList;
         Connection cn = getConnection();
         String query = "select q.TEXT SUBJECT,q.SCORE,q.SUBJECTID,s.SID, s.TEXT SOLUTION from QUESTION q left join SOLUTION s on q.SUBJECTID=s.SUBJECTID and (s.SUBJECTID in ("+ ids +") or s.SID in ("+ ids +"))";
         Statement statement = null;
@@ -334,7 +335,9 @@ public class FAQDao {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            return outList.stream().collect(Collectors.joining("', '", "'", "'"));
+            if (outList.size() > 0)
+                return outList.stream().collect(Collectors.joining("', '", "'", "'"));
+            return "";
         }
     }
 
